@@ -1,0 +1,9 @@
+**/*.DS_Store
+**/target
+.vscode
+.idea
+**/config*
+**/config-local*
+**/bot-url
+data*
+**/cache*
