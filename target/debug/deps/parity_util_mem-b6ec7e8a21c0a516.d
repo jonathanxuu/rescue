@@ -1,0 +1,10 @@
+/Users/xuyizheng/Desktop/Desk/resuce/target/debug/deps/parity_util_mem-b6ec7e8a21c0a516.rmeta: /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/lib.rs /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/allocators.rs /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/sizeof.rs /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/malloc_size.rs /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/primitives_impls.rs /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/memory_stats_noop.rs
+
+/Users/xuyizheng/Desktop/Desk/resuce/target/debug/deps/parity_util_mem-b6ec7e8a21c0a516.d: /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/lib.rs /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/allocators.rs /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/sizeof.rs /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/malloc_size.rs /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/primitives_impls.rs /Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/memory_stats_noop.rs
+
+/Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/lib.rs:
+/Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/allocators.rs:
+/Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/sizeof.rs:
+/Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/malloc_size.rs:
+/Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/primitives_impls.rs:
+/Users/xuyizheng/.cargo/registry/src/github.com-1ecc6299db9ec823/parity-util-mem-0.10.2/src/memory_stats_noop.rs:
