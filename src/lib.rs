@@ -24,16 +24,21 @@ use codec::{Decode, Encode};
 use crate::alloc::string::ToString;
 
 
-// EXECUTOR
+// RESCUE
 // ================================================================================================
 
-/// Executes the specicied `program` and returns the result together with a STARK-based proof of execution.
+///  Executes the `rescue` fucntion and returns the rescue hash result.
 /// 
-/// * `inputs` specifies the initial stack state and provides secret input tapes;
-/// * `num_outputs` specifies the number of elements from the top of the stack to be returned;
+/// * `inputs` specifies the rescue input;
+/// *  Return the hash result
 #[wasm_bindgen]
-pub fn rescue(values: &[u8], result: &mut [u8]) -> String{
-    math::rescue::rescue(values, result);
+pub fn rescue(values: &[u8]) -> String{
+    let result = math::rescue::rescue(values);
+    debug_assert!(
+        result.len() == 32,
+        "expected result to be exactly 32 bytes but received {}",
+        result.len()
+    );
     return String::from_utf8(result.to_vec()).unwrap()
 }
 
