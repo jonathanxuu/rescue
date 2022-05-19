@@ -1,14 +1,7 @@
 use crate::utils::uninit_vector;
-use alloc::string::{String, ToString};
-use crypto::hashes::blake2b::Blake2b256;
-use rand::{
-    distributions::{Distribution, Uniform},
-    prelude::*,
-};
-use sha2::{Digest, Sha256};
+
 use sp_std::{convert::TryInto, ops::Range, vec::Vec};
 
-use wasm_bindgen_test::console_log;
 // CONSTANTS
 // ================================================================================================
 
@@ -271,33 +264,9 @@ pub fn get_power_series(b: u128, length: usize) -> Vec<u128> {
 // RANDOMNESS
 // --------------------------------------------------------------------------------------------
 
-/// Generates a random field element.
-pub fn rand() -> u128 {
-    let range = Uniform::from(RANGE);
-    let mut g = rand::thread_rng();
-    return g.sample(range);
-}
 
-/// Generates a vector of random field elements.
-pub fn rand_vector(length: usize) -> Vec<u128> {
-    let range = Uniform::from(RANGE);
-    let g = rand::thread_rng();
-    return g.sample_iter(range).take(length).collect();
-}
 
-/// Generates a pseudo-random field element from a given `seed`.
-pub fn prng(seed: [u8; 32]) -> u128 {
-    let range = Uniform::from(RANGE);
-    let mut g = StdRng::from_seed(seed);
-    return range.sample(&mut g);
-}
 
-/// Generates a vector of pseudo-random field elements from a given `seed`.
-pub fn prng_vector(seed: [u8; 32], length: usize) -> Vec<u128> {
-    let range = Uniform::from(RANGE);
-    let g = StdRng::from_seed(seed);
-    return g.sample_iter(range).take(length).collect();
-}
 
 // TYPE CONVERSIONS
 // --------------------------------------------------------------------------------------------

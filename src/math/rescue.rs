@@ -1,7 +1,6 @@
 use crate::{math::field, utils::as_bytes};
 use alloc::vec::Vec;
-use sha3::Digest;
-
+use wasm_bindgen_test::console_log;
 // CONSTANTS
 // ================================================================================================
 
@@ -601,13 +600,14 @@ const ARK: [u128; 546] = [
 
 // ------------------------------------------------------------------------------------------------
 /// Rescue hash function
-pub fn rescue(values: &[u8]) -> Vec<u8> {
+pub fn rescue(values: &[u8]) -> [u8;32] {
     debug_assert!(
         values.len() <= 64,
         "expected 64 or fewer input bytes but received {}",
         values.len()
     );
-    let mut result = Vec::new();
+    let mut result = [0; 32];
+
     // copy values into state and set the remaining state elements to 0
     let mut state = [0u128; 6];
     let state_bytes: &mut [u8; 64] = unsafe { &mut *(&state as *const _ as *mut [u8; 64]) };
@@ -626,9 +626,9 @@ pub fn rescue(values: &[u8]) -> Vec<u8> {
         apply_mds(&mut state);
         add_constants(&mut state, (i * 2 + 2) * 6);
     }
-
     // return the result
     result.copy_from_slice(as_bytes(&state[..2]));
+
     return result;
 }
 

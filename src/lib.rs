@@ -1,8 +1,7 @@
 #![no_std]
-use log::debug;
+// use log::debug;
 use sp_std::{ops::Range, vec, vec::Vec};
-use serde::{Serialize, Deserialize};
-use sha2::{Digest, Sha256};
+// use serde::{Serialize, Deserialize};
 pub mod utils;
 #[macro_use]
 extern crate alloc;
@@ -18,9 +17,9 @@ extern crate console_error_panic_hook;
 extern crate wasm_bindgen;
 use wasm_bindgen::prelude::*;
 
-extern crate web_sys;
+// extern crate web_sys;
 use wasm_bindgen_test::*;
-use codec::{Decode, Encode};
+// use codec::{Decode, Encode};
 use crate::alloc::string::ToString;
 
 
@@ -32,14 +31,27 @@ use crate::alloc::string::ToString;
 /// * `inputs` specifies the rescue input;
 /// *  Return the hash result
 #[wasm_bindgen]
-pub fn rescue(values: &[u8]) -> String{
-    let result = math::rescue::rescue(values);
+pub fn rescue(values: String) -> Vec<u8>{
+    let mut values_in_u128 = vec![];
+    if values.len() != 0{ 
+        let values_a: Vec<&str> = values.split(',').collect();
+        values_in_u128= values_a
+        .iter()
+        .map(|public_a| public_a.parse::<u128>().unwrap())
+        .collect();
+    };
+    debug_assert!(
+        values_in_u128.len() == 4,
+        "expected values_in_u128 to be exactly 4 bytes but received {}",
+        values_in_u128.len()
+    );
+    let result = math::rescue::rescue(utils::as_bytes(&values_in_u128));
     debug_assert!(
         result.len() == 32,
         "expected result to be exactly 32 bytes but received {}",
         result.len()
     );
-    return String::from_utf8(result.to_vec()).unwrap()
+    return result.to_vec()
 }
 
 
