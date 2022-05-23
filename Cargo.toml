@@ -17,7 +17,8 @@ wasm-bindgen = "0.2.74"
 console_error_panic_hook = "0.1.6"
 console_log = "0.2.0"
 wasm-bindgen-test = "0.3.24"
-
+math = {verision = "0.4", path = "src/utils/winterfell-math", package="winter-math",default-features = false}
+crypto = {verision = "0.4", path = "src/utils/winterfell-crypto", package="winter-crypto",default-features = false}
 [dev-dependencies]
 criterion = "0.3.3"
 num-bigint = "0.3.0"
