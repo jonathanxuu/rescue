@@ -13,7 +13,7 @@ use serde::{Serialize, Deserialize};
 // ================================================================================================
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq, Serialize, Deserialize)]
-pub struct ElementDigest([BaseElement; DIGEST_SIZE]);
+pub struct ElementDigest(pub [BaseElement; DIGEST_SIZE]);
 
 impl ElementDigest {
     pub fn new(value: [BaseElement; DIGEST_SIZE]) -> Self {

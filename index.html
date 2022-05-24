@@ -12,14 +12,17 @@
       init().then(async m => {
         init_panic_hook()
         console.log(1 , m)
-        // let t1 = new Date() 
-        // for (var i=0; i<12000; i++)
-        //     {
+        let t1 = new Date() 
+        for (var i=0; i<12000; i++)
+        {
         //         let loop = rescue("1,2,3,4")
         //     }
         let g = rescue("3160418389087892171,1704586040892553644,7667725956169696099,15322547880270344141,12730300956469525794,14724532961550870207,11926599669562559788,7176910545438469284")
-        // let t2 = new Date() 
-        // console.log(t2.getTime() - t1.getTime())
+        }
+        let g = rescue("134567439589739,0,0,0,134567439589739,0,0,0")
+
+        let t2 = new Date() 
+        console.log(t2.getTime() - t1.getTime())
         console.log(g)
 
                 // init_panic_hook()

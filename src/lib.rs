@@ -1,5 +1,5 @@
 #![no_std]
-use crypto::{Digest, ElementHasher};
+use crypto::{Digest, ElementHasher, hash::rescue::rp64_256::ElementDigest};
 // use log::debug;
 use sp_std::{ vec, vec::Vec};
 // use serde::{Serialize, Deserialize};
@@ -10,7 +10,7 @@ use alloc::{ string::String};
 // ================================================================================================
 
 use math::fields::f64::BaseElement;
-
+use math::StarkField;
 
 extern crate console_error_panic_hook;
 
@@ -18,7 +18,7 @@ extern crate wasm_bindgen;
 use wasm_bindgen::prelude::*;
 
 // extern crate web_sys;
-// use wasm_bindgen_test::*;
+use wasm_bindgen_test::*;
 
 
 // RESCUE
@@ -29,7 +29,7 @@ use wasm_bindgen::prelude::*;
 /// * `inputs` specifies the rescue input, it should be a vec with 8 (u64) elements;
 /// *  Return the hash result [u8;32]
 #[wasm_bindgen]
-pub fn rescue(values: String) -> Vec<u8>{
+pub fn rescue(values: String) -> Vec<u64>{
     let mut values_in_u64 = vec![];
     if values.len() != 0{ 
         let values_a: Vec<&str> = values.split(',').collect();
@@ -39,7 +39,6 @@ pub fn rescue(values: String) -> Vec<u8>{
         .map(|public_a| public_a.parse::<u64>().expect("parse fail"))
         .collect();
     };
-
     assert!(
         values_in_u64.len() == 8,
         "expected len of values_in_u64 to be exactly 8 but received {}",
@@ -47,8 +46,19 @@ pub fn rescue(values: String) -> Vec<u8>{
     );
     let elements = from_vec(values_in_u64);
     let result = crypto::hashers::Rp64_256::hash_elements(&elements);
-    return result.as_bytes().to_vec()
+
+    return as_u64(result).to_vec()
 }
+
+pub fn as_u64(origin:ElementDigest) -> [u64; 4] {
+    let mut result = [0; 4];
+    result[..1].copy_from_slice(&[origin.0[0].as_int()]);
+    result[1..2].copy_from_slice(&[origin.0[1].as_int()]);
+    result[2..3].copy_from_slice(&[origin.0[2].as_int()]);
+    result[3..4].copy_from_slice(&[origin.0[3].as_int()]);
+    result
+}
+
 
 
 /// HELPER
