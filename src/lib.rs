@@ -59,7 +59,15 @@ pub fn as_u64(origin:ElementDigest) -> [u64; 4] {
     result
 }
 
+pub fn rescue_two_para(para_1: [u64;4], para_2:[u64;4]) -> Vec<u64>{
+    let mut first: Vec<u64> = para_1.to_vec();
+    let mut second: Vec<u64> = para_2.to_vec();
+    first.append(& mut second);
 
+    let elements = from_vec(first);
+    let result = crypto::hashers::Rp64_256::hash_elements(&elements);
+    return as_u64(result).to_vec()
+}
 
 /// HELPER
     pub fn from_vec(origin: Vec<u64>) -> [BaseElement;8]{
@@ -83,3 +91,12 @@ pub const MAX_CONTEXT_DEPTH : usize = 16;
 pub const MAX_LOOP_DEPTH    : usize = 8;
 
 
+#[test]
+fn hash_elements() {
+    // let elements: [BaseElement; 8] = rand_array();
+    let elements1 = [134567439589739, 0, 0, 0];
+    let elements2 = [134567439589739, 0, 0, 0];
+    let result = rescue_two_para(elements1, elements2);
+    let expected_result:[u64;4] = [12201562084755916601, 14471853991255629693, 10239563256505788014, 13227819823987800438];
+    assert_eq!(result, expected_result);
+}
