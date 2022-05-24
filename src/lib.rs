@@ -20,14 +20,14 @@ use wasm_bindgen::prelude::*;
 // extern crate web_sys;
 use wasm_bindgen_test::*;
 
-
+use hex;
 // RESCUE
 // ================================================================================================
 
 ///  Executes the `rescue` fucntion and returns the rescue hash result.
 /// 
 /// * `inputs` specifies the rescue input, it should be a vec with 8 (u64) elements;
-/// *  Return the hash result [u8;32]
+/// *  Return the hash result Vec<u64>
 #[wasm_bindgen]
 pub fn rescue(values: String) -> Vec<u64>{
     let mut values_in_u64 = vec![];
@@ -67,6 +67,16 @@ pub fn rescue_two_para(para_1: [u64;4], para_2:[u64;4]) -> Vec<u64>{
     let elements = from_vec(first);
     let result = crypto::hashers::Rp64_256::hash_elements(&elements);
     return as_u64(result).to_vec()
+}
+
+pub fn rescue_two_para_u8_32(para_1: [u64;4], para_2:[u64;4]) -> [u8;32]{
+    let mut first: Vec<u64> = para_1.to_vec();
+    let mut second: Vec<u64> = para_2.to_vec();
+    first.append(& mut second);
+
+    let elements = from_vec(first);
+    let result = crypto::hashers::Rp64_256::hash_elements(&elements);
+    return result.as_bytes()
 }
 
 /// HELPER
